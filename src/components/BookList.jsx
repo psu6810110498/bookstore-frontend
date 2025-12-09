@@ -37,6 +37,7 @@ export default function BookList(props) {
     {
       title: "Cover",
       dataIndex: 'coverUrl',
+      render: (text) => (
         <Image src={`http://localhost:3080/${text}`} height={100} width={70} style={{ objectFit: 'cover' }} />
       )
     },
