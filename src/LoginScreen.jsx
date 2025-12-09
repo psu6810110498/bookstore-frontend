@@ -24,9 +24,11 @@ export default function LoginScreen(props) {
   }
 
   return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
     <Form
       onFinish={handleLogin}
       autoComplete="off"
+      style={{ width: 300 }}
     >
       {errMsg &&
         <Form.Item>
@@ -57,10 +59,11 @@ export default function LoginScreen(props) {
       <Form.Item>
         <Button
           type="primary"
-          htmlType="submit" loading={isLoading}>
+          htmlType="submit" loading={isLoading} block>
           Submit
         </Button>
       </Form.Item>
     </Form>
+    </div>
   )
 }
