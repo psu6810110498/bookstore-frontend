@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Divider, Spin } from 'antd';
+import { Divider, Spin, Input, Select } from 'antd';
 import BookList from './components/BookList'
 import AddBook from './components/AddBook';
 import EditBook from './components/EditBook';
@@ -94,17 +94,49 @@ function BookScreen() {
     fetchCategories()
   }, [])
   
+  // Search & Filter State
+  const [searchText, setSearchText] = useState('');
+  const [filterCategory, setFilterCategory] = useState('All');
+
+  const filteredBooks = bookData.filter(book => {
+    const matchesSearch = book.title.toLowerCase().includes(searchText.toLowerCase()) || 
+                          book.author.toLowerCase().includes(searchText.toLowerCase());
+    const matchesCategory = filterCategory === 'All' || book.category.id === filterCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "2em" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2em", alignItems: "center" }}>
         <AddBook onBookAdded={handleAddBook} categories={categories}/>
+        
+        <div style={{ display: 'flex', gap: '10px' }}>
+             <Input.Search 
+                placeholder="Search by Title or Author" 
+                allowClear 
+                onSearch={value => setSearchText(value)}
+                onChange={e => setSearchText(e.target.value)}
+                style={{ width: 250 }} 
+             />
+             <Select
+                defaultValue="All"
+                style={{ width: 150 }}
+                onChange={value => setFilterCategory(value)}
+                options={[
+                    { value: 'All', label: 'All Categories' },
+                    ...categories
+                ]}
+             />
+        </div>
       </div>
+
       <Divider>
         My books worth {totalAmount.toLocaleString()} dollars
       </Divider>
       <Spin spinning={loading}>
         <BookList 
-          data={bookData} 
+          data={filteredBooks} 
           onLiked={handleLikeBook}
           onDeleted={handleDeleteBook}
           onEdit={setEditItem}
