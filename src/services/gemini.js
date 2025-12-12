@@ -3,7 +3,6 @@ import axios from 'axios';
 const API_KEY = 'AIzaSyANOxt6OnM5cZkTKSzCJJCFTKyOzLaybfg';
 
 export const askGeminiAboutBook = async (title, author) => {
-    // ถาม AI ให้สรุปเนื้อหาหนังสือเป็นภาษาไทย
     const question = `ช่วยสรุปย่อและบอกเกร็ดความรู้ที่น่าสนใจเกี่ยวกับหนังสือเรื่อง "${title}" เขียนโดย ${author} ให้หน่อย ขอความยาวไม่เกิน 100 คำ`;
 
     const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;

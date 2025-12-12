@@ -27,7 +27,6 @@ export default function DashboardScreen() {
 
   if (loading) return <div>Loading...</div>;
 
-  // Process data for charts
   const categoryCount = data.reduce((acc, book) => {
     const catName = book.category ? book.category.name : 'Unknown';
     acc[catName] = (acc[catName] || 0) + 1;

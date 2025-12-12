@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import LoginScreen from './LoginScreen';
 import BookScreen from './BookScreen';
 import DashboardScreen from './DashboardScreen';
-import { Button, Layout, Menu } from 'antd'; // For Layout later, or just simple use for now
+import { Button, Layout, Menu } from 'antd';
 const { Header, Content } = Layout;
 
 
@@ -16,7 +16,6 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Check for token on startup
     const token = localStorage.getItem('token')
     if (token) {
       axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }

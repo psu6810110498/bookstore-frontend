@@ -18,7 +18,6 @@ function BookScreen() {
   const [categories, setCategories] = useState([])
   const [editItem, setEditItem] = useState(null)
   
-  // AI State
   const [aiLoading, setAiLoading] = useState(false);
   const [aiResponse, setAiResponse] = useState("");
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
@@ -94,7 +93,6 @@ function BookScreen() {
     fetchCategories()
   }, [])
   
-  // Search & Filter State
   const [searchText, setSearchText] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');
 
